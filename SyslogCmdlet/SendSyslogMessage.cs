@@ -4,16 +4,21 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-using System.Management.Automation;
-
 namespace Poesoft
 {
+    using System.Management.Automation;
+
     /// <summary>
     /// Implements the Send-SyslogMessage PowerShell Cmdlet
     /// </summary>
     [Cmdlet(VerbsCommunications.Send, "SyslogMessage")]
     public class SendSyslogMessage : PSCmdlet
     {
+        public SendSyslogMessage()
+        {
+            this.Port = 514;
+        }
+
         /// <summary>
         /// Gets or sets the computer name of the Syslog server
         /// </summary>
@@ -24,7 +29,7 @@ namespace Poesoft
         /// <summary>
         /// Gets or sets the port of the Syslog server
         /// </summary>
-        [Parameter(ParameterSetName = "Default", Mandatory = true)]
+        [Parameter(ParameterSetName = "Default")]
         [ValidateNotNullOrEmpty]
         public int Port { get; set; }
 
